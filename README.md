@@ -23,6 +23,8 @@ $ docker exec -it nginx bash
 $ certbot --nginx -d yourdomain.com -d www.yourdomain.com
 
 Then, customize default.conf Nginx (do this in an nginx container):
+$ apt update
+$ apt install nano
 $ nano /etc/nginx/conf.d/default.conf
 fill in the configuration as in ./nginx/ex.conf (but adjust the domain according to your domain.)
 
