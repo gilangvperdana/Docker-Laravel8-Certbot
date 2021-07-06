@@ -11,7 +11,14 @@ Environment:
 # Installation
 ```
 The "src" folder is our laravel project folder, please move it to that folder without a folder in it:
-$ cd laravel-project
+$ cd your-laravel-project
+$ composer install
+$ php artisan config:cache
+$ cp .env.example .env
+$ php artisan key:generate
+$ php artisan route:clear
+$ php artisan config:clear
+$ php artisan cache:clear
 $ cp -r * docker-laravel8/src (make sure example site on /src has been deleted, $ rm -r *)
 
 Then, run the docker-compose:
@@ -27,6 +34,10 @@ $ apt update
 $ apt install nano
 $ nano /etc/nginx/conf.d/default.conf
 fill in the configuration as in ./nginx/ex.conf (but adjust the domain according to your domain.)
+
+Then, give a permission to cache file and storage folder laravel (do this in an nginx container):
+$ sudo chmod -Rf 0777 /var/www/html/bootstrap/cache
+$ sudo chmod -Rf 0777 /var/www/html/storage
 
 Then, reload the Nginx (do this in an nginx container):
 $ nginx -t
